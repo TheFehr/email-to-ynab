@@ -1,0 +1,30 @@
+transfer_ids:
+  SOME-TRANSFER-ACCOUNT: TRANSFERI-DARE-FUNN-FORR-AAAAAALLLLLL
+  SOME-OTHER-TRANSFER-ACCOUNT: TRANSFERI-DARE-FUNN-FORR-AAAAAALLLLLL
+email_parts_regexps:
+  account: "Konto:\\s(.*)\n"
+  amount: "Betrag:\\s([0-9\\.']*)\\sCHF\n"
+  booking_date: "Buchungsdatum:\\s([0-9]{2}\\.[0-9]{2}\\.[0-9]{4})\n"
+  entry_type: "(Belastung|Gutschrift)"
+  memo: "Buchung:\n(.*)\nFreundliche"
+  valuta_date: "Valutadatum: ([0-9]{2}\\.[0-9]{2}\\.[0-9]{4})\n"
+#  saldo: "Neuer Saldo:\\s([0-9\\.']*).*\n"
+payee_name_regexps:
+  - "\\nan:?\\s([\\w\\s]*)\\n"
+  - "^Einkauf\\s(.*)\\n"
+  - "E-Banking\\sAuftrag\\s\\(eBill\\)\\n(.*)\\n"
+  - "Gutschrift\\s(.*)\\n"
+accounts:
+  Jugendkonto YoungMemberPlus "Jugendkonto": ACCOUNTI-DARE-FUNN-FORR-AAAAAALLLLLL
+email:
+  email_server: whatever.idontcare
+  server_port: 993
+  username: you@whatever.idontcare
+  password: THISISASECRET
+ynab:
+  api_key: loooooooooooooooooongAPIkey
+  budget_id: BUDGETID-LALA-LALA-NICE-BUDGETIDLALA
+pushbullet:
+  active: true
+  api_key: IAMANAPIKEY
+  device_id: lalalaIDlalalala

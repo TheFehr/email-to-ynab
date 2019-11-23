@@ -2,7 +2,13 @@
 
 module Helpers
   module Pushbullet
-    class PushbulletHelper
+    class Helper
+      class << self
+        def send_info(text)
+          api = API::Pushbullet.new
+          api.push_note(text)
+        end
+      end
     end
   end
 end

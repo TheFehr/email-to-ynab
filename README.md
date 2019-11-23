@@ -1,1 +1,1 @@
-raiffeisen-ynab-adapter
+# EMail to YNAB adapter

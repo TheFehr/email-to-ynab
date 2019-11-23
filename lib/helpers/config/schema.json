@@ -5,11 +5,9 @@
   "properties": {
     "transfer_ids": {
       "type": "object",
-      "properties": {
-        "type": {
-          "type": "string",
-          "pattern": "([A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12})"
-        }
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "([A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12})"
       }
     },
     "email_parts_regexps": {
@@ -41,7 +39,97 @@
       "items": {
         "type": "string"
       }
+    },
+    "accounts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "([A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12})"
+      }
+    },
+    "email": {
+      "type": "object",
+      "properties": {
+        "email_server": {
+          "type": "string"
+        },
+        "server_port": {
+          "type": "integer"
+        },
+        "username": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "email_server",
+        "server_port",
+        "password",
+        "username"
+      ]
+    },
+    "pushbullet": {
+      "type": "object",
+      "properties": {
+        "active": {
+          "type": "boolean"
+        },
+        "notify_on_error": {
+          "type": "boolean"
+        },
+        "notify_on_success": {
+          "type": "boolean"
+        },
+        "api_key": {
+          "type": "string"
+        },
+        "device_id": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "if": {
+        "properties": {
+          "active": {
+            "const": true
+          }
+        }
+      },
+      "then": {
+        "required": [
+          "api_key",
+          "device_id"
+        ]
+      }
+    },
+    "ynab": {
+      "type": "object",
+      "properties": {
+        "api_key": {
+          "type": "string"
+        },
+        "budget_id": {
+          "type": "string",
+          "pattern": "([A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12})"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "api_key",
+        "budget_id"
+      ]
     }
   },
+  "required": [
+    "accounts",
+    "email_parts_regexps",
+    "payee_name_regexps",
+    "transfer_ids",
+    "pushbullet",
+    "ynab"
+  ],
+
   "additionalProperties": false
 }
