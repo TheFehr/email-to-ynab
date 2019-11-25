@@ -21,6 +21,7 @@ email:
   server_port: 993
   username: you@whatever.idontcare
   password: THISISASECRET
+  mailbox: SOMEMAILBOX
 ynab:
   api_key: loooooooooooooooooongAPIkey
   budget_id: BUDGETID-LALA-LALA-NICE-BUDGETIDLALA

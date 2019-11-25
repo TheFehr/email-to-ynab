@@ -4,7 +4,6 @@ source 'https://rubygems.org'
 
 gem 'activemodel'
 gem 'activesupport'
-gem 'dotenv'
 gem 'json-schema'
 gem 'mail'
 gem 'require_all'

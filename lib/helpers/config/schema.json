@@ -61,13 +61,17 @@
         },
         "password": {
           "type": "string"
+        },
+        "mailbox": {
+          "type": "string"
         }
       },
       "required": [
         "email_server",
         "server_port",
         "password",
-        "username"
+        "username",
+        "mailbox"
       ]
     },
     "pushbullet": {
@@ -124,6 +128,7 @@
   },
   "required": [
     "accounts",
+    "email",
     "email_parts_regexps",
     "payee_name_regexps",
     "transfer_ids",

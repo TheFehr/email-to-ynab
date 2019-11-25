@@ -5,20 +5,12 @@ require 'pathname'
 
 module Helpers
   module Config
-    class Helper
+    class Loader
       SCHEMA_PATH = './lib/helpers/config/schema.json'
       DEFAULT_PATH = Pathname.new('./config.yaml').freeze
 
       def validate!(path = DEFAULT_PATH)
         JSON::Validator.validate!(schema_raw, config(path))
-      end
-
-      def transfer_ids
-        @transfer_ids ||= config[:transfer_ids]
-      end
-
-      def accounts
-        @accounts ||= config[:accounts]
       end
 
       def payee_name_regexps
@@ -33,6 +25,16 @@ module Helpers
           parsed_regex = Regexp.new(raw_regexp, Regexp::MULTILINE) if key == :memo
           {key => parsed_regex}
         end.reduce({}, :merge)
+      end
+
+      def method_missing(name)
+        return config[name.to_sym] if config.key? name.to_sym
+
+        super
+      end
+
+      def respond_to_missing?(name)
+        config.key? name.to_sym
       end
 
       private

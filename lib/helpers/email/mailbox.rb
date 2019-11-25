@@ -5,12 +5,12 @@ require 'mail'
 
 module Helpers
   module EMail
-    class Inbox
+    class Mailbox
       class << self
-        def load_unparsed_emails(mailbox)
+        def load_unparsed_emails
           setup_connection
 
-          return unless @imap.select(mailbox)
+          return unless @imap.select(Helpers::Config::Loader.new.email[:mailbox])
 
           @uids = fetch_unparsed_uids
           return nil unless @uids.any?
@@ -28,8 +28,10 @@ module Helpers
         private
 
         def setup_connection
-          @imap = Net::IMAP.new(ENV['EMAIL_SERVER'], ENV['PORT'], true)
-          @imap.login(ENV['EMAIL'], ENV['PASSWORD'])
+          email_config = Helpers::Config::Loader.new.email
+
+          @imap = Net::IMAP.new(email_config[:email_server], email_config[:server_port], true)
+          @imap.login(email_config[:username], email_config[:password])
         end
 
         def fetch_unparsed_uids

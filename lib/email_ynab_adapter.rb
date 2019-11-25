@@ -1,13 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'helpers/email/inbox'
-require_relative 'helpers/email/content_parser'
-
 class EMailYNABAdapter
   def self.run
-    @config_helper = Helpers::Config::Helper.new.validate!
+    @config_helper = Helpers::Config::Loader.new.validate!
 
-    unread_mail_bodies = Helpers::EMail::Inbox.load_unparsed_emails('Raiffeisen')
+    unread_mail_bodies = Helpers::EMail::Mailbox.load_unparsed_emails
     puts "#{unread_mail_bodies.size} EMAILS FOUND, PARSING..." if unread_mail_bodies
     mail_entries = Helpers::EMail::ContentParser.parse_bodies(unread_mail_bodies)
     if mail_entries.nil?
@@ -15,6 +12,9 @@ class EMailYNABAdapter
     else
       emails(mail_entries)
     end
+
+  rescue ::JSON::Schema::ValidationError => e
+    puts "CONFIG-ERROR:\n#{e.message}"
   end
 
   def self.no_emails
