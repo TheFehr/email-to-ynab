@@ -27,7 +27,7 @@ module Models
       end
 
       def real_amount
-        (amount * 1000).to_i
+        (@amount * 1000).to_i
       end
 
       private
