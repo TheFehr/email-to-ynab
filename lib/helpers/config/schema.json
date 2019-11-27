@@ -7,7 +7,7 @@
       "type": "object",
       "additionalProperties": {
         "type": "string",
-        "pattern": "([A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12})"
+        "pattern": "([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})"
       }
     },
     "email_parts_regexps": {
@@ -44,7 +44,7 @@
       "type": "object",
       "additionalProperties": {
         "type": "string",
-        "pattern": "([A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12})"
+        "pattern": "([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})"
       }
     },
     "email": {
@@ -116,7 +116,7 @@
         },
         "budget_id": {
           "type": "string",
-          "pattern": "([A-Z0-9]{8}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{12})"
+          "pattern": "([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})"
         }
       },
       "additionalProperties": false,
