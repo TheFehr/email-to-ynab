@@ -3,50 +3,6 @@
   "$id": "https://github.com/thefehr/email-to-ynab/lib/helpers/config/schema.json",
   "type": "object",
   "properties": {
-    "transfer_ids": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "string",
-        "pattern": "([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})"
-      }
-    },
-    "email_parts_regexps": {
-      "type": "object",
-      "properties": {
-        "entry_type": {
-          "type": "string"
-        },
-        "account": {
-          "type": "string"
-        },
-        "amount": {
-          "type": "string"
-        },
-        "booking_date": {
-          "type": "string"
-        },
-        "valuta_date": {
-          "type": "string"
-        },
-        "memo": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false
-    },
-    "payee_name_regexps": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "accounts": {
-      "type": "object",
-      "additionalProperties": {
-        "type": "string",
-        "pattern": "([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})"
-      }
-    },
     "email": {
       "type": "object",
       "properties": {
@@ -72,6 +28,23 @@
         "password",
         "username",
         "mailbox"
+      ]
+    },
+    "ynab": {
+      "type": "object",
+      "properties": {
+        "api_key": {
+          "type": "string"
+        },
+        "budget_id": {
+          "type": "string",
+          "pattern": "([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "api_key",
+        "budget_id"
       ]
     },
     "pushbullet": {
@@ -108,32 +81,73 @@
         ]
       }
     },
-    "ynab": {
+    "accounts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})"
+      }
+    },
+    "transfer_types":
+    {
       "type": "object",
       "properties": {
-        "api_key": {
+        "credit": {
           "type": "string"
         },
-        "budget_id": {
-          "type": "string",
-          "pattern": "([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})"
+        "debit": {
+          "type": "string"
         }
       },
-      "additionalProperties": false,
-      "required": [
-        "api_key",
-        "budget_id"
-      ]
+      "additionalProperties": false
+    },
+    "transfer_ids": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "([a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12})"
+      }
+    },
+    "email_parts_regexps": {
+      "type": "object",
+      "properties": {
+        "entry_type": {
+          "type": "string"
+        },
+        "account": {
+          "type": "string"
+        },
+        "amount": {
+          "type": "string"
+        },
+        "booking_date": {
+          "type": "string"
+        },
+        "valuta_date": {
+          "type": "string"
+        },
+        "memo": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "payee_name_regexps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": [
-    "accounts",
     "email",
-    "email_parts_regexps",
-    "payee_name_regexps",
-    "transfer_ids",
+    "ynab",
     "pushbullet",
-    "ynab"
+    "accounts",
+    "transfer_types",
+    "transfer_ids",
+    "payee_name_regexps",
+    "email_parts_regexps"
   ],
 
   "additionalProperties": false
