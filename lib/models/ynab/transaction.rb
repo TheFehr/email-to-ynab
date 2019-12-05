@@ -15,7 +15,7 @@ module Models
       validates :account_id, :date, :amount, presence: true
       validate :payee_info?
 
-      def initialize(*data)
+      def initialize(data)
         @account_id = data[:account_id]
         @date = data[:date]
         @payee_name = data[:payee_name]

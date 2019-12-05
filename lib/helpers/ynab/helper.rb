@@ -11,12 +11,12 @@ module Helpers
           matched_data.map do |email_entry|
             if email_entry.valid?
               Models::YNAB::Transaction.new(
-                email_entry.account,
-                email_entry.value_date,
-                email_entry.payee_name,
-                email_entry.payee_id,
-                email_entry.real_amount,
-                email_entry.memo
+                account_id: email_entry.account,
+                date: email_entry.value_date,
+                payee_name: email_entry.payee_name,
+                payee_id: email_entry.payee_id,
+                amount: email_entry.real_amount,
+                memo: email_entry.memo
               )
             else
               notify_missing_info(email_entry)
