@@ -6,6 +6,8 @@ require 'pathname'
 module Helpers
   module Config
     class Loader
+      include Singleton
+
       SCHEMA_PATH = './lib/helpers/config/schema.json'
       DEFAULT_PATH = Pathname.new('./config.yaml').freeze
 
@@ -23,7 +25,7 @@ module Helpers
         @email_parts_regexps ||= config[:email_parts_regexps].map do |key, raw_regexp|
           parsed_regex = Regexp.new(raw_regexp)
           parsed_regex = Regexp.new(raw_regexp, Regexp::MULTILINE) if key == :memo
-          {key => parsed_regex}
+          { key => parsed_regex }
         end.reduce({}, :merge)
       end
 

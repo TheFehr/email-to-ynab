@@ -5,7 +5,7 @@ module Helpers
     class Helper
       class << self
         def send_info(text)
-          return unless Helpers::Config::Loader.new.pushbullet[:active]
+          return unless Helpers::Config::Loader.instance.pushbullet[:active]
 
           api = API::Pushbullet.new
           api.push_note(text)

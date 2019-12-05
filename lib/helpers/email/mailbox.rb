@@ -10,7 +10,7 @@ module Helpers
         def load_unparsed_emails
           setup_connection
 
-          return unless @imap.select(Helpers::Config::Loader.new.email[:mailbox])
+          return unless @imap.select(Helpers::Config::Loader.instance.email[:mailbox])
 
           @uids = fetch_unparsed_uids
           return nil unless @uids.any?
@@ -28,7 +28,7 @@ module Helpers
         private
 
         def setup_connection
-          email_config = Helpers::Config::Loader.new.email
+          email_config = Helpers::Config::Loader.instance.email
 
           @imap = Net::IMAP.new(email_config[:email_server], email_config[:server_port], true)
           @imap.login(email_config[:username], email_config[:password])

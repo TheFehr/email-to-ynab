@@ -26,7 +26,7 @@ module Helpers
         end
 
         def post_entries(ynab_entries)
-          API::YNAB.new.post_entries(ynab_entries)
+          API::YNAB.instance.post_entries(ynab_entries)
         end
 
         private
