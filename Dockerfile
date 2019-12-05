@@ -11,4 +11,3 @@ ADD . /app
 
 ENTRYPOINT ["ruby", "adapter.rb"]
 CMD ["push"]
-
