@@ -5,5 +5,3 @@ detectors:
   UncommunicativeVariableName:
     accept:
       - e
-
-

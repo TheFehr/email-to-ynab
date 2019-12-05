@@ -4,11 +4,13 @@ module Helpers
   module YNAB
     module ErrorHelper
       def build_error_message(error, entries)
-        'ERROR:'\
-        "id=#{error.id}"\
-        "name=#{error.name}"\
-        "detail: #{error.detail}"\
-        "data: #{entries}"
+        <<-ERROR_MESSAGE
+        ERROR:
+        id=#{error.id}
+        name=#{error.name}
+        detail: #{error.detail}
+        data: #{entries}
+        ERROR_MESSAGE
       end
     end
   end
