@@ -29,11 +29,12 @@ module Helpers
 
         def create_mail_entry(uid, args)
           entry_type = args.delete(:entry_type)
+          args[:uid] = uid
 
           if entry_type == 'Gutschrift'
-            Models::EMail::Credit.new(uid, *args.values)
+            Models::EMail::Credit.new(args)
           elsif entry_type == 'Belastung'
-            Models::EMail::Debit.new(uid, *args.values)
+            Models::EMail::Debit.new(args)
           else
             ::Exception.new('Unknown entry_type')
           end

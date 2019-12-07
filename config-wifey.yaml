@@ -1,0 +1,36 @@
+email:
+  email_server: thefehr.me
+  server_port: 993
+  username: sulaauto@thefehr.me
+  password: '#GEO3dQd\?$3'
+  mailbox: Raiffeisen
+ynab:
+  api_key: bc7254fb3fd4edcd4d43d69b8ce7a5c165d344575e51657f21342bab3c86cab4
+  budget_id: c1896609-2877-476e-907b-a9d1ab20f60f
+pushbullet:
+  active: true
+  api_key: o.pJ21IVDDWpsiKzDVVaSlciFw0PvRpodt
+  device_id: ujC1bkpBq6CsjAl11HK7y0
+accounts:
+  Jugendkonto YoungMemberPlus "Compte jeunesse": 88ea6df8-8932-4186-bc8e-7492db52a56b
+transfer_types:
+  credit: Gutschrift
+  debit: Belastung
+transfer_ids:
+  Bancomat-Bezug: db25524f-8519-4b96-9a96-42e85e7a5b65
+  Lastschriftverfahren VISECA CARD SERVICES SA: ca41d652-c8a9-4df2-aa08-2c02888565b3
+#  Konto CH6680808007186334417: 8d06a853-363f-4ad7-b5b6-fcab7308c9f1
+email_parts_regexps:
+  account: Konto:\s(.*)\n
+  amount: Betrag:\s([0-9\.']*)\sCHF\n
+  booking_date: Buchungsdatum:\s([0-9]{2}\.[0-9]{2}\.[0-9]{4})\n
+  entry_type: (Belastung|Gutschrift)
+  memo: Buchung:\n(.*)\nFreundliche
+  valuta_date: "Valutadatum: ([0-9]{2}\\.[0-9]{2}\\.[0-9]{4})\n"
+#  saldo: "Neuer Saldo:\\s([0-9\\.']*).*\n"
+payee_name_regexps:
+  - "\\nan:?\\s([\\w\\s]*)\\n"
+  - "^Einkauf\\s(.*)\\n"
+  - "E-Banking\\sAuftrag\\s\\(eBill\\)\\n(.*)\\n"
+  - "E-Banking\\sAuftrag\\san\\s(.*)\\n"
+  - "Gutschrift\\s(.*)\\n"

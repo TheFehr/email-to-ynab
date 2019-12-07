@@ -9,7 +9,7 @@ module Helpers
       include Singleton
 
       SCHEMA_PATH = './lib/helpers/config/schema.json'
-      DEFAULT_PATH = Pathname.new('./config.yaml').freeze
+      DEFAULT_PATH = ARGV[0] ? Pathname.new(ARGV[0]) : Pathname.new('./config.yaml').freeze
 
       def validate!(path = DEFAULT_PATH)
         JSON::Validator.validate!(schema_raw, config(path))

@@ -5,3 +5,20 @@ detectors:
   UncommunicativeVariableName:
     accept:
       - e
+  Attribute:
+    enabled: false
+  NilCheck:
+    enabled: false
+  DuplicateMethodCall:
+    max_calls: 2
+  TooManyMethods:
+    max_methods: 20
+  MissingSafeMethod:
+    enabled: false
+  TooManyConstants:
+    max_constants: 6
+  TooManyStatements:
+    max_statements: 10
+  TooManyInstanceVariables:
+    exclude:
+      - 'models/**/*.rb'

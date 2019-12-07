@@ -35,7 +35,7 @@ module Models
           approved: true,
           flag_color: DEFAULT_FLAG_COLOR,
           amount: @amount
-        }.reject { |_, value| value.nil? }
+        }.reject { |_key, value| value.nil? }
       end
 
       private
