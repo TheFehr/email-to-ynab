@@ -15,13 +15,15 @@ module Models
       validates_type :value_date, :date, allow_blank: false
       validates_type :account, :string, allow_blank: false
 
-      def initialize(uid, account, amount, charge_date, memo, value_date)
-        @uid = uid
-        @account = account
-        @amount = amount.gsub('\'', '').to_f
-        @charge_date = Date.parse charge_date
-        @value_date = Date.parse value_date
-        @memo = memo
+      def initialize(data)
+        pp data
+
+        @uid = data[:uid]
+        @account = data[:account]
+        @amount = data[:amount].gsub('\'', '').to_f
+        @charge_date = Date.parse data[:booking_date]
+        @value_date = Date.parse data[:valuta_date]
+        @memo = data[:memo]
 
         correct_value_date
       end

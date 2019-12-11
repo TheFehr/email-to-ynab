@@ -2,7 +2,7 @@
 
 class EMailYNABAdapter
   def self.run
-    @config_helper = Helpers::Config::Loader.new.validate!
+    @config_helper = Helpers::Config::Loader.instance.validate!
 
     unread_mail_bodies = Helpers::EMail::Mailbox.load_unparsed_emails
     puts "#{unread_mail_bodies.size} EMAILS FOUND, PARSING..." if unread_mail_bodies
@@ -12,7 +12,6 @@ class EMailYNABAdapter
     else
       emails(mail_entries)
     end
-
   rescue ::JSON::Schema::ValidationError => e
     puts "CONFIG-ERROR:\n#{e.message}"
   end

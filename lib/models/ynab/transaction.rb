@@ -15,13 +15,13 @@ module Models
       validates :account_id, :date, :amount, presence: true
       validate :payee_info?
 
-      def initialize(account_id, date, payee_name, payee_id, amount, memo)
-        @account_id = account_id
-        @date = date
-        @payee_name = payee_name
-        @payee_id = payee_id
-        @amount = amount
-        @memo = memo
+      def initialize(data)
+        @account_id = data[:account_id]
+        @date = data[:date]
+        @payee_name = data[:payee_name]
+        @payee_id = data[:payee_id]
+        @amount = data[:amount]
+        @memo = data[:memo]
       end
 
       def to_h
@@ -35,7 +35,7 @@ module Models
           approved: true,
           flag_color: DEFAULT_FLAG_COLOR,
           amount: @amount
-        }.reject { |_, value| value.nil? }
+        }.reject { |_key, value| value.nil? }
       end
 
       private
