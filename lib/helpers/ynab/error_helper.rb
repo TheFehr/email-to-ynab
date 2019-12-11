@@ -4,7 +4,7 @@ module Helpers
   module YNAB
     module ErrorHelper
       def self.build_error_message(error, entries)
-        <<-ERROR_MESSAGE
+        <<~ERROR_MESSAGE
         ERROR:
         id=#{error.id}
         name=#{error.name}
