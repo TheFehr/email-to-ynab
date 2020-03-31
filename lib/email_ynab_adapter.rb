@@ -23,6 +23,7 @@ class EMailYNABAdapter
   def self.emails(mail_entries)
     transactions = Helpers::YNAB::Helper.build_transactions(mail_entries)
     pp transactions.map(&:to_h) if ARGV.include?('debug')
+
     if ARGV.include?('push') && !transactions.empty?
       puts "#{transactions.size} ENTRIES ARE BEING CREATED"
       Helpers::YNAB::Helper.post_entries(transactions)

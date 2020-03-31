@@ -9,7 +9,11 @@ module Helpers
       include Singleton
 
       SCHEMA_PATH = './lib/helpers/config/schema.json'
-      DEFAULT_PATH = ARGV[0] ? Pathname.new(ARGV[0]) : Pathname.new('./config.yaml').freeze
+      DEFAULT_PATH = Pathname.new('./config/config.yaml')
+
+      def initialize
+        @config_path = set_config_path
+      end
 
       def validate!(path = DEFAULT_PATH)
         JSON::Validator.validate!(schema_raw, config(path))
@@ -41,16 +45,26 @@ module Helpers
 
       private
 
-      def config_raw(path = DEFAULT_PATH)
+      def config_raw(path = @config_path)
         @config_raw ||= File.read(path)
       end
 
-      def config(path = DEFAULT_PATH)
+      def config(path = @config_path)
         @config ||= YAML.safe_load(config_raw(path), symbolize_names: true)
       end
 
       def schema_raw(path = SCHEMA_PATH)
         @schema_raw ||= File.read(path)
+      end
+
+      def set_config_path
+        ARGV.each do |arg|
+          arg_path = Pathname.new(arg)
+
+          return arg_path if arg_path.readable? && arg_path.file?
+        end
+
+        DEFAULT_PATH
       end
     end
   end

@@ -21,9 +21,9 @@ module Helpers
         end
 
         def set_emails_to_flagged
-          puts "FLAGGING #{uids.size} EMAILS"
-          uids.each do |message_id|
-            imap.uid_store(message_id, '+FLAGS', [:Flagged])
+          puts "FLAGGING #{@uids.size} EMAILS"
+          @uids.each do |message_id|
+            @imap.uid_store(message_id, '+FLAGS', [:Flagged])
           end
         end
 
