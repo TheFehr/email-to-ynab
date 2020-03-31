@@ -46,7 +46,7 @@ module Helpers
         unread_mails_raw = @imap.uid_fetch(@uids, 'RFC822')
         unread_mails_raw.map do |mail_body|
           mail = Mail.read_from_string(mail_body.attr['RFC822'])
-          {mail_body.attr['UID'] => mail.text_part.body.to_s.force_encoding('utf-8')}
+          { mail_body.attr['UID'] => mail.text_part.body.to_s.force_encoding('utf-8') }
         end.reduce({}, :merge)
       end
     end

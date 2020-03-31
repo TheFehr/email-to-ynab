@@ -55,8 +55,6 @@ module Helpers
       def schema_raw(path = SCHEMA_PATH)
         @schema_raw ||= File.read(path)
       end
-
-
     end
   end
 end

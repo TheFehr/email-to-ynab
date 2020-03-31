@@ -20,5 +20,4 @@ detectors:
   TooManyStatements:
     max_statements: 10
   TooManyInstanceVariables:
-    exclude:
-      - 'models/**/*.rb'
+    max_instance_variables: 5
