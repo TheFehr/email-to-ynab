@@ -2,9 +2,9 @@
 
 class EMailYNABAdapter
   def self.run
-    @config_helper = Helpers::Config::Loader.instance.validate!
+    Helpers::Config::Loader.instance.validate!
 
-    unread_mail_bodies = Helpers::EMail::Mailbox.load_unparsed_emails
+    unread_mail_bodies = Helpers::EMail::Mailbox.instance.load_unparsed_emails
     puts "#{unread_mail_bodies.size} EMAILS FOUND, PARSING..." if unread_mail_bodies
     mail_entries = Helpers::EMail::ContentParser.parse_bodies(unread_mail_bodies)
     if mail_entries.nil?

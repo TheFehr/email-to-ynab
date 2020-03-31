@@ -14,7 +14,7 @@ module API
     def post_entries(ynab_entries)
       @api.transactions
           .create_transaction(@configs[:budget_id], transactions: ynab_entries.map(&:to_h))
-      ::Helpers::EMail::Mailbox.set_emails_to_flagged
+      ::Helpers::EMail::Mailbox.instance.set_emails_to_flagged
     rescue ::YNAB::ApiError => e
       error_message = Helpers::YNAB::ErrorHelper.build_error_message(e, ynab_entries)
       puts error_message
