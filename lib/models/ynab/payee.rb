@@ -7,17 +7,12 @@ module Models
 
       attr_accessor :name, :id
 
-      validate :payee_info?
+      validates :name, presence: true, unless: :id
+      validates :id, presence: true, unless: :name
 
       def initialize(data)
         @name = data[:payee_name]
         @id = data[:payee_id]
-      end
-
-      private
-
-      def payee_info?
-        @name.present? || @id.present?
       end
     end
   end
