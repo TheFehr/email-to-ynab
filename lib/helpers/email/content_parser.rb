@@ -6,7 +6,7 @@ module Helpers
       class << self
         def parse_bodies(bodies)
           mail_entries = []
-          accounts = Helpers::Config::Loader.new.accounts
+          accounts = Helpers::Config::Loader.instance.accounts
 
           bodies&.each do |uid, body|
             mail_entry = create_mail_entry(uid, match_mail_regexps(body))
@@ -29,18 +29,19 @@ module Helpers
 
         def create_mail_entry(uid, args)
           entry_type = args.delete(:entry_type)
+          args[:uid] = uid
 
           if entry_type == 'Gutschrift'
-            Models::EMail::Credit.new(uid, *args.values)
+            Models::EMail::Credit.new(args)
           elsif entry_type == 'Belastung'
-            Models::EMail::Debit.new(uid, *args.values)
+            Models::EMail::Debit.new(args)
           else
             ::Exception.new('Unknown entry_type')
           end
         end
 
         def find_payee_id(memo)
-          transfer_ids = Helpers::Config::Loader.new.transfer_ids.dup
+          transfer_ids = Helpers::Config::Loader.instance.transfer_ids.dup
 
           filtered_payees = transfer_ids.keys.filter do |key|
             memo.present? && memo.include?(key.to_s)
@@ -49,14 +50,14 @@ module Helpers
         end
 
         def find_payee_name(memo)
-          regexps = Helpers::Config::Loader.new.payee_name_regexps.dup
+          regexps = Helpers::Config::Loader.instance.payee_name_regexps.dup
           matches = regexps.map { |regex| memo.match(regex) }.reject(&:nil?)
           match = matches.first unless matches.empty?
           match[1] if match
         end
 
         def match_mail_regexps(content)
-          email_parts_regexps = Helpers::Config::Loader.new.email_parts_regexps
+          email_parts_regexps = Helpers::Config::Loader.instance.email_parts_regexps
 
           email_parts_regexps.map.with_index do |(key, regex)|
             matched = content.match(regex)
