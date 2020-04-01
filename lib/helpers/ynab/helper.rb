@@ -38,6 +38,7 @@ module Helpers
         def notify_missing_info(entry)
           entry.validate
 
+          pp "#{entry.uid}:\n#{entry.errors.full_messages.join("\n")}" if ARGV.include?('debug')
           Helpers::Pushbullet::Helper.send_info("#{entry.uid}:\n#{entry.errors.full_messages.join(' ')}")
         end
       end

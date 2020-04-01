@@ -10,3 +10,12 @@ gem 'require_all'
 gem 'validates_type'
 gem 'washbullet'
 gem 'ynab'
+
+group :test, :development do
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'reek'
+  gem 'rubocop'
+  gem 'rubocop-performance'
+  gem 'rubocop-rspec'
+end
